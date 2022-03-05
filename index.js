@@ -141,6 +141,7 @@ function clear() {
   answer.style.color = "";
 }
 function changeHeading() {
+  if (heading.textContent === "Made For Concelia") return;
   heading.textContent = "Made For Concelia";
   setTimeout(() => {
     heading.textContent = "Mummy's Calculator";

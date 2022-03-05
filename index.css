@@ -26,6 +26,7 @@ body {
   text-align: center;
   text-shadow: 2px 2px 2px rgb(247, 117, 201);
   padding: 10px 0;
+  user-select: none;
 }
 .calculator {
   display: grid;
