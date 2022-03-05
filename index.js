@@ -5,6 +5,7 @@ let dataAce = document.querySelector("[data-ace]");
 let dataDel = document.querySelector("[data-del]");
 let dataTop = document.querySelector("[data-top]");
 let dataBottom = document.querySelector("[data-bottom]");
+const heading = document.querySelector(".heading");
 let inputs = "";
 let currentOp;
 let opStr = "";
@@ -97,9 +98,13 @@ let answer = document.querySelector("#answer");
 const form = document.querySelector("#form");
 const clearBtn = document.querySelector("#clear");
 const input = form.querySelector(".input");
+
+//
 form.addEventListener("submit", sumUp);
 clearBtn.addEventListener("click", clear);
+heading.addEventListener("dblclick", changeHeading);
 
+//
 function sumUp(e) {
   e.preventDefault();
   if (!input.textContent) {
@@ -134,4 +139,10 @@ function clear() {
   input.textContent = "";
   answer.textContent = "0";
   answer.style.color = "";
+}
+function changeHeading() {
+  heading.textContent = "Made For Concelia";
+  setTimeout(() => {
+    heading.textContent = "Mummy's Calculator";
+  }, 3000);
 }
