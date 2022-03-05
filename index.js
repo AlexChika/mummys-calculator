@@ -93,3 +93,44 @@ function calc() {
   }
   return result;
 }
+// Chain calculation
+let answer = document.querySelector("#answer");
+const form = document.querySelector("#form");
+const clearBtn = document.querySelector("#clear");
+const input = form.querySelector(".input");
+console.log(answer);
+form.addEventListener("submit", sumUp);
+clearBtn.addEventListener("click", clear);
+
+function sumUp(e) {
+  e.preventDefault();
+  if (!input.textContent) {
+    answer.textContent = "Pls fill all fields";
+    answer.style.color = "red";
+    return;
+  }
+  if (/[^0-9,]/gi.test(input.textContent)) {
+    answer.textContent = `"${input.textContent.match(/[^0-9,]/gi)[0]}" ${
+      input.textContent.match(/[^0-9,]/gi)[1]
+        ? `, " ${input.textContent.match(/[^0-9,]/gi)[1]}"`
+        : ""
+    } are not allowed.
+    pls use comma "," to separate values.`;
+    answer.style.color = "yellow";
+    return;
+  }
+  let sum = 0;
+  const inputs = input.textContent.split(",");
+  inputs.forEach((x) => {
+    if (x !== "") {
+      sum += parseInt(x);
+    }
+  });
+  answer.textContent = sum;
+  answer.style.color = "green";
+}
+function clear() {
+  input.textContent = "";
+  answer.textContent = "0";
+  answer.style.color = "";
+}

@@ -19,7 +19,6 @@ body {
     rgba(30, 242, 176, 1) 96%
   );
   min-height: 100vh;
-  /* padding: 10px; */
 }
 .heading {
   color: white;
@@ -29,14 +28,15 @@ body {
   padding: 10px 0;
 }
 .calculator {
-  min-height: 100vh;
   display: grid;
   grid-template-columns: repeat(4, 100px);
-  /* grid-template-columns: repeat(4, minmax(1fr, 100px)); */
-  /* grid-template-rows: minmax(100px, auto) repeat(5, 100px); */
   grid-template-rows: minmax(100px, auto) repeat(5, 100px);
   justify-content: center;
   align-content: center;
+  border: 1px solid white;
+  margin: 0 auto;
+  margin-bottom: 2em;
+  width: max-content;
 }
 .screen {
   grid-column: 1/-1;
@@ -78,13 +78,63 @@ button:focus {
 .equal {
   grid-column: 3/5;
 }
+/*  */
+#chain-addition {
+  width: 400px;
+  margin: 0 auto;
+}
+.input {
+  width: 100%;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.75);
+  border: 1px solid white;
+  font-size: 1.5rem;
+  line-height: 1.5em;
+  outline: none;
+  overflow-x: hidden;
+  word-wrap: break-word;
+  margin-bottom: 1em;
+}
+.input:focus {
+  border: 3px solid white;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+.btn {
+  display: block;
+  margin: 0 auto;
+  border: none;
+  border-radius: 15px;
+  transition: all 0.3s linear;
+}
+.btn-sub {
+  margin-bottom: 0.3em;
+  width: 60%;
+  background-color: rgba(30, 242, 176, 1);
+}
+.btn-sub:hover,
+.btn-sub:focus {
+  color: rgba(30, 242, 176, 1);
+}
+.btn-cl {
+  width: 50%;
+  background-color: tomato;
+}
+.btn-cl:hover,
+.btn-cl:focus {
+  color: tomato;
+}
 @media screen and (max-width: 500px) {
   .calculator {
     width: 90%;
-    margin: 0 auto;
+    margin-bottom: 2em;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: minmax(90px, auto) repeat(5, 90px);
+  }
+  #chain-addition {
+    width: 90%;
+    margin-bottom: 2em;
   }
 }
 @media screen and (max-width: 425px) {
@@ -92,10 +142,12 @@ button:focus {
     width: 95%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    /* grid-template-columns: repeat(4, minmax(1fr, 100px)); */
-    /* grid-template-rows: minmax(100px, auto) repeat(5, 100px); */
     grid-template-rows: minmax(80px, auto) repeat(5, 80px);
     justify-content: center;
     align-content: center;
+  }
+  #chain-addition {
+    width: 90%;
+    margin: 0 auto;
   }
 }

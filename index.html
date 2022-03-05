@@ -9,7 +9,7 @@
   </head>
   <body>
     <h1 class="heading">Mummy's Calculator</h1>
-    <div class="calculator">
+    <div id="calculator" class="calculator">
       <div class="screen">
         <div data-top class="top"></div>
         <div data-bottom class="bottom"></div>
@@ -33,7 +33,24 @@
       <button data-btn>0</button>
       <button data-eq class="equal">=</button>
     </div>
-
+    <div id="chain-addition">
+      <details>
+        <summary>Instructions</summary>
+        <p>Type in values / amounts</p>
+        <p>
+          Use the comma <span class="comma">,</span>to sepate different values
+        </p>
+        <p>Click on submit to see the answer</p>
+      </details>
+      <h2>Total: <span id="answer">0</span></h2>
+      <form id="form" action="">
+        <div class="input" contenteditable="true"></div>
+        <div class="btn-con">
+          <button class="btn btn-sub" type="submit">summit</button>
+          <button id="clear" type="button" class="btn btn-cl">Clear</button>
+        </div>
+      </form>
+    </div>
     <script src="index.js"></script>
   </body>
 </html>
