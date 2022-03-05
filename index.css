@@ -1,0 +1,101 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&display=swap");
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+body {
+  background: rgb(30, 242, 176);
+  background: linear-gradient(
+    150deg,
+    rgba(30, 242, 176, 1) 0%,
+    rgb(240, 148, 208, 1) 40%,
+    rgba(241, 104, 198, 1) 40%,
+    rgba(242, 166, 21, 1) 79%,
+    rgb(247, 117, 201) 79%,
+    rgba(30, 242, 176, 1) 96%
+  );
+  min-height: 100vh;
+  /* padding: 10px; */
+}
+.heading {
+  color: white;
+  font-family: "Dancing Script", cursive;
+  text-align: center;
+  text-shadow: 2px 2px 2px rgb(247, 117, 201);
+  padding: 10px 0;
+}
+.calculator {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(4, 100px);
+  /* grid-template-columns: repeat(4, minmax(1fr, 100px)); */
+  /* grid-template-rows: minmax(100px, auto) repeat(5, 100px); */
+  grid-template-rows: minmax(100px, auto) repeat(5, 100px);
+  justify-content: center;
+  align-content: center;
+}
+.screen {
+  grid-column: 1/-1;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-end;
+  padding: 0.1em;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+.screen .top {
+  font-size: 1.5em;
+  color: rgba(255, 255, 255, 0.75);
+}
+.screen .bottom {
+  font-size: 2.5em;
+  color: white;
+}
+button {
+  cursor: pointer;
+  border: 1px solid white;
+  background-color: rgba(255, 255, 255, 0.75);
+  font-size: 2rem;
+}
+button:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+button:focus {
+  border: 3px solid white;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+.ace {
+  grid-column: 1/3;
+}
+
+.equal {
+  grid-column: 3/5;
+}
+@media screen and (max-width: 500px) {
+  .calculator {
+    width: 90%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: minmax(90px, auto) repeat(5, 90px);
+  }
+}
+@media screen and (max-width: 425px) {
+  .calculator {
+    width: 95%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* grid-template-columns: repeat(4, minmax(1fr, 100px)); */
+    /* grid-template-rows: minmax(100px, auto) repeat(5, 100px); */
+    grid-template-rows: minmax(80px, auto) repeat(5, 80px);
+    justify-content: center;
+    align-content: center;
+  }
+}
