@@ -45,7 +45,6 @@ dataBtns.forEach(function (btn) {
     } else {
       inputs += e.currentTarget.textContent;
     }
-
     dataBottom.textContent = inputs;
   });
 });
@@ -59,7 +58,6 @@ dataOp.forEach(function (ops) {
     } else {
       dataTop.textContent = dataBottom.textContent + " " + currentOp;
     }
-
     dataBottom.textContent = "";
     inputs = "";
   });
@@ -75,6 +73,7 @@ dataEq.addEventListener("click", function () {
 function calc() {
   let firstInput = parseFloat(dataTop.textContent);
   let lastInput = parseFloat(dataBottom.textContent);
+  if (!firstInput && !lastInput) return;
   let op = currentOp;
   let result;
   if (op === "*") {
@@ -98,14 +97,13 @@ let answer = document.querySelector("#answer");
 const form = document.querySelector("#form");
 const clearBtn = document.querySelector("#clear");
 const input = form.querySelector(".input");
-console.log(answer);
 form.addEventListener("submit", sumUp);
 clearBtn.addEventListener("click", clear);
 
 function sumUp(e) {
   e.preventDefault();
   if (!input.textContent) {
-    answer.textContent = "Pls fill all fields";
+    answer.textContent = "Pls fill in values";
     answer.style.color = "red";
     return;
   }
@@ -115,7 +113,7 @@ function sumUp(e) {
         ? `, " ${input.textContent.match(/[^0-9,]/gi)[1]}"`
         : ""
     } are not allowed.
-    pls use comma "," to separate values.`;
+    Pls use comma "," to separate values.`;
     answer.style.color = "yellow";
     return;
   }
@@ -126,7 +124,10 @@ function sumUp(e) {
       sum += parseInt(x);
     }
   });
-  answer.textContent = sum;
+  answer.textContent = sum.toLocaleString("en-NG", {
+    style: "currency",
+    currency: "NGN",
+  });
   answer.style.color = "green";
 }
 function clear() {

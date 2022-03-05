@@ -29,8 +29,8 @@ body {
 }
 .calculator {
   display: grid;
-  grid-template-columns: repeat(4, 100px);
-  grid-template-rows: minmax(100px, auto) repeat(5, 100px);
+  grid-template-columns: repeat(4, 80px);
+  grid-template-rows: minmax(80px, auto) repeat(5, 80px);
   justify-content: center;
   align-content: center;
   border: 1px solid white;
@@ -50,11 +50,11 @@ body {
   word-break: break-all;
 }
 .screen .top {
-  font-size: 1.5em;
+  font-size: 1.3em;
   color: rgba(255, 255, 255, 0.75);
 }
 .screen .bottom {
-  font-size: 2.5em;
+  font-size: 2em;
   color: white;
 }
 button {
@@ -104,6 +104,7 @@ button:focus {
   display: block;
   margin: 0 auto;
   border: none;
+  outline: none;
   border-radius: 15px;
   transition: all 0.3s linear;
 }
@@ -115,6 +116,8 @@ button:focus {
 .btn-sub:hover,
 .btn-sub:focus {
   color: rgba(30, 242, 176, 1);
+  border: none;
+  border-radius: 15px;
 }
 .btn-cl {
   width: 50%;
@@ -123,6 +126,8 @@ button:focus {
 .btn-cl:hover,
 .btn-cl:focus {
   color: tomato;
+  border-radius: 15px;
+  border: none;
 }
 @media screen and (max-width: 500px) {
   .calculator {
@@ -130,7 +135,7 @@ button:focus {
     margin-bottom: 2em;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: minmax(90px, auto) repeat(5, 90px);
+    grid-template-rows: minmax(75px, auto) repeat(5, 75px);
   }
   #chain-addition {
     width: 90%;
@@ -142,7 +147,7 @@ button:focus {
     width: 95%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: minmax(80px, auto) repeat(5, 80px);
+    grid-template-rows: minmax(70px, auto) repeat(5, 70px);
     justify-content: center;
     align-content: center;
   }
