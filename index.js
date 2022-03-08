@@ -95,12 +95,13 @@ function calc() {
 /*......... Chain calculation ..........*/
 // Dom
 let answer = document.querySelector("#answer");
+const deleteAll = document.querySelector("#del-all");
 const form = document.querySelector("#form");
 const clearBtn = document.querySelector("#clear");
 const input = form.querySelector(".input");
 const historyclose = document.querySelectorAll(".his-close");
 const recordCon = document.querySelectorAll(".record-con");
-const hisBtns = document.querySelectorAll("[his-btn]");
+const hisBtns = document.querySelectorAll("[data-his]");
 const history = document.querySelector("#history");
 // Events
 form.addEventListener("submit", sumUp);
@@ -151,6 +152,7 @@ function changeHeading() {
 }
 /* ............  History ............... */
 // Events
+deleteAll.addEventListener("click", delAll);
 recordCon.forEach((record) => {
   const delTag = record.querySelector(".del-tag");
   const delBtns = record.querySelectorAll(".del-btn span");
@@ -177,5 +179,8 @@ hisBtns.forEach((btn) => {
 // // functions
 function del() {
   console.log("You deleted me");
+}
+function delAll() {
+  console.log("You deleted all");
 }
 // console.log(deleteBtns);

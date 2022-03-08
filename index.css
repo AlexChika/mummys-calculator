@@ -83,7 +83,7 @@ button:focus {
 }
 /*  */
 #chain-addition {
-  width: 400px;
+  width: 320px;
   margin: 0 auto;
 }
 .input {
@@ -127,6 +127,7 @@ button:focus {
 }
 .btn-cl {
   width: 50%;
+  max-width: 500px;
   background-color: tomato;
 }
 .btn-cl:hover,
@@ -141,10 +142,11 @@ button:focus {
 .btn-his:focus {
   color: rgba(241, 104, 198, 1);
 }
-/* history section */
+/*......... history section......... */
 .history {
   position: fixed;
   top: 0;
+  opacity: 0;
   left: -100%;
   width: 100%;
   height: 100%;
@@ -153,13 +155,18 @@ button:focus {
 }
 .history.active {
   left: 0;
+  opacity: 1;
 }
 .history .container {
   overflow-y: auto;
-  width: 100%;
+  width: 500px;
   height: 85%;
+  padding-top: 25px;
+  margin: 0 auto;
 }
 .his-head {
+  width: 500px;
+  margin: 0 auto;
   display: flex;
   justify-content: space-around;
 }
@@ -176,7 +183,7 @@ button:focus {
   }
 }
 .history h2 {
-  font-size: 2.5em;
+  font-size: 2em;
   font-family: "Dancing Script", cursive;
   text-decoration: underline rgba(241, 104, 198, 1);
 }
@@ -184,7 +191,6 @@ button:focus {
   background-color: rgba(255, 255, 255, 0.75);
   margin: 0 auto;
   margin-bottom: 0.5em;
-  width: 400px;
 }
 .record-con .rec-head {
   background-color: rgb(150, 149, 149);
@@ -219,6 +225,7 @@ button:focus {
 .record-con.active .del-btn {
   opacity: 1;
   top: -100%;
+  z-index: 10;
 }
 .del-btn span {
   padding: 3px;
@@ -247,7 +254,7 @@ button:focus {
   display: inline-block;
   text-align: center;
   background-color: grey;
-  padding: 3px;
+  padding: 3px 7px;
   color: white;
   border-radius: 50%;
 }
@@ -263,8 +270,11 @@ button:focus {
     width: 90%;
     margin-bottom: 2em;
   }
-  .record-con {
-    width: 90%;
+  .history .container {
+    width: 90vw;
+  }
+  .his-head {
+    width: 90vw;
   }
 }
 @media screen and (max-width: 425px) {
@@ -279,8 +289,5 @@ button:focus {
   #chain-addition {
     width: 90%;
     margin: 0 auto;
-  }
-  .record-con {
-    width: 90vw;
   }
 }

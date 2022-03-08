@@ -52,7 +52,7 @@
         <div class="btn-con">
           <button class="btn btn-sub" type="submit">summit</button>
           <button id="clear" type="button" class="btn btn-cl">clear</button>
-          <button his-btn="his-btn" type="button" class="btn btn-his">
+          <button data-his="his-btn" type="button" class="btn btn-his">
             records
           </button>
         </div>
@@ -61,7 +61,7 @@
     <section id="history" class="history">
       <div class="his-head">
         <h2>Record List</h2>
-        <button his-btn="his-btn"><i class="bi bi-x-lg"></i></button>
+        <button data-his="his-btn"><i class="bi bi-x-lg"></i></button>
       </div>
       <div class="container">
         <details class="record-con">
@@ -88,8 +88,56 @@
             <p><span class="rec-index">99</span>&nbsp; &nbsp; 2345</p>
           </div>
         </details>
+        <details class="record-con">
+          <summary class="rec-head">
+            <p class="del-btn">
+              delete?
+              <span data-id="del-yes">Yes</span>
+              <span data-id="del-no">No</span>
+            </p>
+            <i class="bi bi-arrow-right"></i>
+            <span id="price">#45,000</span>
+            <span id="date">wed 12th 7:30am</span>
+            <i class="del-tag bi bi-trash3"></i>
+          </summary>
+          <div class="record-items">
+            <p><span class="rec-index">1</span>&nbsp; &nbsp; 2345</p>
+            <p><span class="rec-index">1</span>&nbsp; &nbsp; 2345</p>
+            <p><span class="rec-index">1</span>&nbsp; &nbsp; 2345</p>
+            <p><span class="rec-index">1</span>&nbsp; &nbsp; 2345</p>
+            <p><span class="rec-index">1</span>&nbsp; &nbsp; 2345</p>
+            <p><span class="rec-index">1</span>&nbsp; &nbsp; 2345</p>
+            <p><span class="rec-index">1</span>&nbsp; &nbsp; 2345</p>
+            <p><span class="rec-index">1</span>&nbsp; &nbsp; 2345</p>
+            <p><span class="rec-index">99</span>&nbsp; &nbsp; 2345</p>
+          </div>
+        </details>
+        <details class="record-con">
+          <summary class="rec-head">
+            <p class="del-btn">
+              delete?
+              <span data-id="del-yes">Yes</span>
+              <span data-id="del-no">No</span>
+            </p>
+            <i class="bi bi-arrow-right"></i>
+            <span id="price">#45,000</span>
+            <span id="date">wed 12th 7:30am</span>
+            <i class="del-tag bi bi-trash3"></i>
+          </summary>
+          <div class="record-items">
+            <p><span class="rec-index">1</span>&nbsp; &nbsp; 2345</p>
+            <p><span class="rec-index">1</span>&nbsp; &nbsp; 2345</p>
+            <p><span class="rec-index">1</span>&nbsp; &nbsp; 2345</p>
+            <p><span class="rec-index">1</span>&nbsp; &nbsp; 2345</p>
+            <p><span class="rec-index">1</span>&nbsp; &nbsp; 2345</p>
+            <p><span class="rec-index">1</span>&nbsp; &nbsp; 2345</p>
+            <p><span class="rec-index">1</span>&nbsp; &nbsp; 2345</p>
+            <p><span class="rec-index">1</span>&nbsp; &nbsp; 2345</p>
+            <p><span class="rec-index">99</span>&nbsp; &nbsp; 2345</p>
+          </div>
+        </details>
       </div>
-      <button>Delet All</button>
+      <button class="btn btn-cl" id="del-all">delete all</button>
     </section>
     <script src="index.js"></script>
   </body>
