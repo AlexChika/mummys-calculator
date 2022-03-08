@@ -35,15 +35,14 @@ dataDel.addEventListener("click", function () {
     dataTop.textContent = "";
   }
 });
-
 dataBtns.forEach(function (btn) {
   btn.addEventListener("click", function (e) {
     inputs = dataBottom.textContent;
-
     if (e.currentTarget.textContent === ".") {
       if (inputs.includes(".")) return;
       inputs += e.currentTarget.textContent;
     } else {
+      if (inputs === "0") return;
       inputs += e.currentTarget.textContent;
     }
     dataBottom.textContent = inputs;
@@ -51,6 +50,7 @@ dataBtns.forEach(function (btn) {
 });
 dataOp.forEach(function (ops) {
   ops.addEventListener("click", function (e) {
+    if (!dataBottom.textContent && !dataTop.textContent) return;
     currentOp = e.currentTarget.textContent;
     opStr += e.currentTarget.textContent;
     if (dataTop.textContent) {
@@ -69,7 +69,6 @@ dataEq.addEventListener("click", function () {
   dataTop.textContent = "";
   inputs = "";
 });
-
 //  The Calculate function
 function calc() {
   let firstInput = parseFloat(dataTop.textContent);
@@ -93,18 +92,21 @@ function calc() {
   }
   return result;
 }
-// Chain calculation
+/*......... Chain calculation ..........*/
+// Dom
 let answer = document.querySelector("#answer");
 const form = document.querySelector("#form");
 const clearBtn = document.querySelector("#clear");
 const input = form.querySelector(".input");
-
-//
+const historyclose = document.querySelectorAll(".his-close");
+const recordCon = document.querySelectorAll(".record-con");
+const hisBtns = document.querySelectorAll("[his-btn]");
+const history = document.querySelector("#history");
+// Events
 form.addEventListener("submit", sumUp);
 clearBtn.addEventListener("click", clear);
 heading.addEventListener("dblclick", changeHeading);
-
-//
+//functions
 function sumUp(e) {
   e.preventDefault();
   if (!input.textContent) {
@@ -147,3 +149,33 @@ function changeHeading() {
     heading.textContent = "Mummy's Calculator";
   }, 3000);
 }
+/* ............  History ............... */
+// Events
+recordCon.forEach((record) => {
+  const delTag = record.querySelector(".del-tag");
+  const delBtns = record.querySelectorAll(".del-btn span");
+  delTag.addEventListener("click", (e) => {
+    console.log("I was fired");
+    record.classList.add("active");
+  });
+  delBtns.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      if (btn.dataset.id === "del-yes") {
+        del();
+        return;
+      }
+      console.log("You pardoned me");
+      record.classList.remove("active");
+    });
+  });
+});
+hisBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    history.classList.toggle("active");
+  });
+});
+// // functions
+function del() {
+  console.log("You deleted me");
+}
+// console.log(deleteBtns);

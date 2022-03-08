@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"
+    />
     <link rel="stylesheet" href="index.css" />
     <title>mum's calculator</title>
   </head>
@@ -40,17 +44,53 @@
         <p>
           Use the comma <span class="comma">,</span>to sepate different values
         </p>
-        <p>Click on submit to see the answer</p>
+        <p>Click on submit to see the total sum</p>
       </details>
       <h2>Total: <span id="answer">0</span></h2>
       <form id="form" action="">
         <div class="input" contenteditable="true"></div>
         <div class="btn-con">
           <button class="btn btn-sub" type="submit">summit</button>
-          <button id="clear" type="button" class="btn btn-cl">Clear</button>
+          <button id="clear" type="button" class="btn btn-cl">clear</button>
+          <button his-btn="his-btn" type="button" class="btn btn-his">
+            records
+          </button>
         </div>
       </form>
     </div>
+    <section id="history" class="history">
+      <div class="his-head">
+        <h2>Record List</h2>
+        <button his-btn="his-btn"><i class="bi bi-x-lg"></i></button>
+      </div>
+      <div class="container">
+        <details class="record-con">
+          <summary class="rec-head">
+            <p class="del-btn">
+              delete?
+              <span data-id="del-yes">Yes</span>
+              <span data-id="del-no">No</span>
+            </p>
+            <i class="bi bi-arrow-right"></i>
+            <span id="price">#45,000</span>
+            <span id="date">wed 12th 7:30am</span>
+            <i class="del-tag bi bi-trash3"></i>
+          </summary>
+          <div class="record-items">
+            <p><span class="rec-index">1</span>&nbsp; &nbsp; 2345</p>
+            <p><span class="rec-index">1</span>&nbsp; &nbsp; 2345</p>
+            <p><span class="rec-index">1</span>&nbsp; &nbsp; 2345</p>
+            <p><span class="rec-index">1</span>&nbsp; &nbsp; 2345</p>
+            <p><span class="rec-index">1</span>&nbsp; &nbsp; 2345</p>
+            <p><span class="rec-index">1</span>&nbsp; &nbsp; 2345</p>
+            <p><span class="rec-index">1</span>&nbsp; &nbsp; 2345</p>
+            <p><span class="rec-index">1</span>&nbsp; &nbsp; 2345</p>
+            <p><span class="rec-index">99</span>&nbsp; &nbsp; 2345</p>
+          </div>
+        </details>
+      </div>
+      <button>Delet All</button>
+    </section>
     <script src="index.js"></script>
   </body>
 </html>
