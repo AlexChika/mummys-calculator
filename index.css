@@ -147,14 +147,15 @@ button:focus {
   position: fixed;
   top: 0;
   opacity: 0;
-  left: -100%;
+  left: 0;
+  visibility: hidden;
   width: 100%;
   height: 100%;
   background: var(--bg);
   transition: all 0.3s linear;
 }
 .history.active {
-  left: 0;
+  visibility: unset;
   opacity: 1;
 }
 .history .container {
@@ -236,6 +237,9 @@ button:focus {
 }
 .del-btn span:last-of-type {
   background-color: rgb(13, 241, 13);
+}
+#date {
+  font-size: 12px;
 }
 .record-items {
   padding: 10px;

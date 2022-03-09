@@ -94,7 +94,7 @@ function calc() {
 }
 /*......... Chain calculation ..........*/
 // Dom
-let answer = document.querySelector("#answer");
+const answer = document.querySelector("#answer");
 const deleteAll = document.querySelector("#del-all");
 const form = document.querySelector("#form");
 const clearBtn = document.querySelector("#clear");
@@ -103,6 +103,9 @@ const historyclose = document.querySelectorAll(".his-close");
 const recordCon = document.querySelectorAll(".record-con");
 const hisBtns = document.querySelectorAll("[data-his]");
 const history = document.querySelector("#history");
+const container = document.querySelector("#container");
+// variables
+let entries = [];
 // Events
 form.addEventListener("submit", sumUp);
 clearBtn.addEventListener("click", clear);
@@ -118,9 +121,9 @@ function sumUp(e) {
   if (/[^0-9,]/gi.test(input.textContent)) {
     answer.textContent = `"${input.textContent.match(/[^0-9,]/gi)[0]}" ${
       input.textContent.match(/[^0-9,]/gi)[1]
-        ? `, " ${input.textContent.match(/[^0-9,]/gi)[1]}"`
+        ? `, "${input.textContent.match(/[^0-9,]/gi)[1]}"`
         : ""
-    } are not allowed.
+    }  are not allowed.
     Pls use comma "," to separate values.`;
     answer.style.color = "yellow";
     return;
@@ -137,7 +140,55 @@ function sumUp(e) {
     currency: "NGN",
   });
   answer.style.color = "green";
+  const entry = {
+    title: answer.textContent,
+    values: inputs,
+    time: getdate(),
+  };
+  entries.push(entry);
+  render(entries);
 }
+function getdate() {
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const cal = new Date();
+  const date = cal.getDate();
+  let hour = cal.getHours();
+  let sub;
+  if (date === 1 || date === 21 || date === 31) {
+    sub = "ist";
+  } else if (date === 2 || date === 22) {
+    sub = "nd";
+  } else if (date === 3 || date === 23) {
+    sub = "rd";
+  } else {
+    sub = "th";
+  }
+  let am;
+  if (hour > 12) {
+    hour = hour - 12;
+    am = "pm";
+  } else {
+    am = "am";
+  }
+  return `${days[cal.getDay()]} ${date + sub} ${
+    months[cal.getMonth()]
+  } ${hour}:${cal.getMinutes()}${am}`;
+}
+console.log(getdate());
 function clear() {
   input.textContent = "";
   answer.textContent = "0";
@@ -153,34 +204,74 @@ function changeHeading() {
 /* ............  History ............... */
 // Events
 deleteAll.addEventListener("click", delAll);
-recordCon.forEach((record) => {
-  const delTag = record.querySelector(".del-tag");
-  const delBtns = record.querySelectorAll(".del-btn span");
-  delTag.addEventListener("click", (e) => {
-    console.log("I was fired");
-    record.classList.add("active");
-  });
-  delBtns.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      if (btn.dataset.id === "del-yes") {
-        del();
-        return;
-      }
-      console.log("You pardoned me");
-      record.classList.remove("active");
-    });
-  });
-});
+
 hisBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
     history.classList.toggle("active");
   });
 });
-// // functions
+// // // functions
 function del() {
   console.log("You deleted me");
 }
 function delAll() {
   console.log("You deleted all");
 }
-// console.log(deleteBtns);
+function getBtns() {
+  const recordCon = document.querySelectorAll(".record-con");
+  recordCon.forEach((record) => {
+    const delTag = record.querySelector(".del-tag");
+    const delBtns = record.querySelectorAll(".del-btn span");
+    delTag.addEventListener("click", (e) => {
+      console.log("I was fired");
+      record.classList.add("active");
+    });
+    delBtns.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        if (btn.dataset.id === "del-yes") {
+          del();
+          return;
+        }
+        console.log("You pardoned me");
+        record.classList.remove("active");
+      });
+    });
+  });
+}
+function render(entries) {
+  const html = entries
+    .reverse()
+    .map((entry) => {
+      const { title, values, time } = entry;
+      return `
+     <details class="record-con">
+          <summary class="rec-head">
+            <p class="del-btn">
+              delete?
+              <span data-id="del-yes">Yes</span>
+              <span data-id="del-no">No</span>
+            </p>
+            <i class="bi bi-arrow-right"></i>
+            <span id="price">${title}</span>
+            <span id="date">${time}</span>
+            <i class="del-tag bi bi-trash3"></i>
+          </summary>
+          <div class="record-items">
+            ${values
+              .map((value, index) => {
+                return `
+              <p><span class="rec-index">${
+                index + 1
+              }</span>&nbsp; &nbsp; ${value}</p>
+              `;
+              })
+              .join("")}
+          </div>
+        </details>
+    `;
+    })
+    .join("");
+  container.innerHTML = html;
+  getBtns();
+}
+function heyyy() {}
