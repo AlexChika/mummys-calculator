@@ -198,13 +198,12 @@ button:focus {
   margin-bottom: 0.5em;
 }
 .record-con .rec-head {
-  background-color: rgb(150, 149, 149);
+  background-color: rgba(255, 255, 255, 0.75);
   display: flex;
-  color: rgb(255, 255, 255);
-  text-shadow: 1px 1px rgb(10, 10, 10);
+  color: black;
   text-transform: capitalize;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 300;
   justify-content: space-around;
   align-items: center;
   position: relative;
@@ -216,15 +215,17 @@ button:focus {
   padding: 5px;
   cursor: pointer;
   background-color: rgb(255, 133, 96);
+  color: white;
 }
 .record-con .del-btn {
   position: absolute;
-  top: -0%;
+  top: -15px;
   opacity: 0;
   visibility: hidden;
   width: max-content;
-  background-color: rgb(202, 202, 202);
-  padding: 5px;
+  background-color: rgb(255, 133, 96);
+  color: white;
+  padding: 5px 10px;
   margin: 0 auto;
   transition: all 0.3s linear;
 }
@@ -235,11 +236,11 @@ button:focus {
   z-index: 10;
 }
 .del-btn span {
-  padding: 3px;
+  padding: 5px;
   cursor: pointer;
 }
 .del-btn span:first-of-type {
-  background-color: rgb(255, 133, 96);
+  background-color: red;
 }
 .del-btn span:last-of-type {
   background-color: rgb(13, 241, 13);

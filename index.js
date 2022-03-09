@@ -281,7 +281,6 @@ function render(entries) {
               <span onclick="del(${id})" data-id="del-yes">Yes</span>
               <span onclick ="delNo(${id})" data-id="del-no">No</span>
             </p>
-            <i class="bi bi-arrow-right"></i>
             <span id="price">${title}</span>
             <span id="date">${time}</span>
             <i class="del-tag bi bi-trash3"></i>
@@ -307,4 +306,3 @@ function render(entries) {
   container.innerHTML = html;
   getBtns();
 }
-function heyyy() {}
