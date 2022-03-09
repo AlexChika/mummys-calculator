@@ -104,8 +104,6 @@ const recordCon = document.querySelectorAll(".record-con");
 const hisBtns = document.querySelectorAll("[data-his]");
 const history = document.querySelector("#history");
 const container = document.querySelector("#container");
-// variables
-let entries = [];
 // Events
 form.addEventListener("submit", sumUp);
 clearBtn.addEventListener("click", clear);
@@ -144,9 +142,27 @@ function sumUp(e) {
     title: answer.textContent,
     values: inputs,
     time: getdate(),
+    id: new Date().getTime(),
   };
+  const entries = getStore();
   entries.push(entry);
-  render(entries);
+  store(entries);
+  render(getStore());
+}
+function store(entry) {
+  localStorage.setItem("entry", JSON.stringify(entry));
+}
+function getStore() {
+  if (localStorage.getItem("entry")) {
+    let array = JSON.parse(localStorage.getItem("entry"));
+    if (array.length > 100) {
+      for (let index = 100; index <= array.length; index++) {
+        array.shift();
+      }
+    }
+    return array;
+  }
+  return [];
 }
 function getdate() {
   const months = [
@@ -188,7 +204,6 @@ function getdate() {
     months[cal.getMonth()]
   } ${hour}:${cal.getMinutes()}${am}`;
 }
-console.log(getdate());
 function clear() {
   input.textContent = "";
   answer.textContent = "0";
@@ -202,6 +217,9 @@ function changeHeading() {
   }, 3000);
 }
 /* ............  History ............... */
+window.addEventListener("DOMContentLoaded", () => {
+  render(getStore());
+});
 // Events
 deleteAll.addEventListener("click", delAll);
 
@@ -211,45 +229,57 @@ hisBtns.forEach((btn) => {
   });
 });
 // // // functions
-function del() {
-  console.log("You deleted me");
+function del(id) {
+  let entries = getStore();
+  entries = entries.filter((entry) => entry.id !== id);
+  store(entries);
+  render(getStore());
 }
-function delAll() {
-  console.log("You deleted all");
+function delAll(e) {
+  const button = e.currentTarget;
+  if (button.textContent === "Click Again To Delete") {
+    store([]);
+    render(getStore());
+    button.textContent = "Delete All";
+    button.style.fontSize = "30px";
+  } else {
+    button.textContent = "Click Again To Delete";
+    button.style.fontSize = "17px";
+  }
+  setTimeout(() => {
+    if (button.textContent === "Click Again To Delete") {
+      button.textContent = "Delete All";
+      button.style.fontSize = "30px";
+    }
+  }, 3000);
+}
+function delNo(id) {
+  const record = document.querySelector(`[data-${id}]`);
+  record.classList.remove("active");
 }
 function getBtns() {
   const recordCon = document.querySelectorAll(".record-con");
   recordCon.forEach((record) => {
     const delTag = record.querySelector(".del-tag");
-    const delBtns = record.querySelectorAll(".del-btn span");
     delTag.addEventListener("click", (e) => {
       console.log("I was fired");
       record.classList.add("active");
     });
-    delBtns.forEach((btn) => {
-      btn.addEventListener("click", (e) => {
-        if (btn.dataset.id === "del-yes") {
-          del();
-          return;
-        }
-        console.log("You pardoned me");
-        record.classList.remove("active");
-      });
-    });
   });
 }
 function render(entries) {
-  const html = entries
+  console.log(entries);
+  let html = entries
     .reverse()
     .map((entry) => {
-      const { title, values, time } = entry;
+      const { title, values, time, id } = entry;
       return `
-     <details class="record-con">
+     <details data-${id} class="record-con">
           <summary class="rec-head">
             <p class="del-btn">
               delete?
-              <span data-id="del-yes">Yes</span>
-              <span data-id="del-no">No</span>
+              <span onclick="del(${id})" data-id="del-yes">Yes</span>
+              <span onclick ="delNo(${id})" data-id="del-no">No</span>
             </p>
             <i class="bi bi-arrow-right"></i>
             <span id="price">${title}</span>
@@ -271,6 +301,9 @@ function render(entries) {
     `;
     })
     .join("");
+  if (!entries.length) {
+    html = `<h1 class="no-record">NO RECORDS</h1>`;
+  }
   container.innerHTML = html;
   getBtns();
 }
