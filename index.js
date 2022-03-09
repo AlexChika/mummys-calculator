@@ -262,13 +262,11 @@ function getBtns() {
   recordCon.forEach((record) => {
     const delTag = record.querySelector(".del-tag");
     delTag.addEventListener("click", (e) => {
-      console.log("I was fired");
       record.classList.add("active");
     });
   });
 }
 function render(entries) {
-  console.log(entries);
   let html = entries
     .reverse()
     .map((entry) => {
